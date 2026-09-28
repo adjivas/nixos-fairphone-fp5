@@ -48,6 +48,12 @@
     };
   };
 
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings.PasswordAuthentication = true;
+  };
+
   # Enable Waydroid.
   virtualisation.waydroid.enable = true;
 
