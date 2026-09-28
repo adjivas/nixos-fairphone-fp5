@@ -48,6 +48,32 @@
     # Others
     neovim
     git
+
+    (pkgs.writeShellScriptBin "switch" ''
+      set -euo pipefail
+
+      cd /home/admin/Repositories/MouseOS
+
+      if ! ${pkgs.nix-output-monitor}/bin/nom build \
+        .#system-gnome-mobile \
+        --out-link result-system \
+        "$@"; then
+        printf '\a' >&2
+        exit 1
+      fi
+
+      system_path="$(${pkgs.coreutils}/bin/readlink -e result-system)"
+
+      printf '\a'
+      echo "Press Enter to switch"
+      read -r
+
+      sudo ${pkgs.nix}/bin/nix-env \
+        --profile /nix/var/nix/profiles/system \
+        --set "$system_path"
+
+      sudo "$system_path/bin/switch-to-configuration" switch
+    '')
   ];
 
   # Enable Flatpak.
