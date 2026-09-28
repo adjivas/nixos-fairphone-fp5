@@ -1,6 +1,24 @@
 {pkgs, ...}: {
   networking.hostName = "fairphone";
 
+  nix = {
+    distributedBuilds = true;
+    buildMachines = [
+      {
+        hostName = "192.168.1.238";
+        system = "aarch64-linux";
+        protocol = "ssh";
+        sshUser = "alice";
+        sshKey = "/root/.ssh/dream33-builder";
+        supportedFeatures = [ "big-parallel" ];
+      }
+    ];
+    settings = {
+      max-jobs = 0; # No local build
+      builders-use-substitutes = true;
+    };
+  };
+
   # Enable Qualcomm modem support.
   nixos-fairphone-fp5.modem.enable = true;
 
