@@ -67,6 +67,14 @@
       exampleConfigPkgs = import nixpkgs {
         inherit system;
 
+	overlays = [
+          (final: prev: {
+            firefox-unwrapped = prev.firefox-unwrapped.override {
+              ltoSupport = false;
+              pgoSupport = false;
+            };
+          })
+        ];
         config = {
           allowUnfree = true;
           # FIXME: This is needed because of `chatty`, which supports Matrix and therefore
@@ -107,6 +115,7 @@
             acc
             // {
               "disk-image-${name}" = mkDiskImage nixosConfig;
+	      "system-${name}" = nixosConfig.config.system.build.toplevel;
             })
           {}
           exampleNixosConfigurations)
