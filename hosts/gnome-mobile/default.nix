@@ -26,6 +26,10 @@
 
     # GNOME extensions.
     gnomeExtensions.app-hider # Hide desktop icons.
+
+    # Others
+    neovim
+    git
   ];
 
   # Enable Flatpak.
