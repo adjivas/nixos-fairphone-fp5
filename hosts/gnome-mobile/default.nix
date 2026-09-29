@@ -47,6 +47,7 @@
 
     # Others
     neovim
+    gnome-maps
     git
 
     (pkgs.writeShellScriptBin "switch" ''
