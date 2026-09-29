@@ -179,9 +179,18 @@ in {
     # Exclude desktop-only GNOME applications that don't make sense on mobile.
     environment.gnome.excludePackages = cfg.excludedPackages;
 
+    # IBus configuration for on-screen keyboard.
+    i18n.inputMethod = {
+      enable = true;
+      type = "ibus";
+
+      ibus.engines = with pkgs.ibus-engines; [
+        typing-booster
+      ];
+    };
     # IBus configuration for on-screen keyboard. Unset IM module environment variables to ensure the
-    # on-screen keyboard works. NOME has a builtin IBus support through IBus' D-Bus API, so these
-    # variables are not neccessary.
+    # on-screen keyboard works. GNOME has a builtin IBus support through IBus' D-Bus API, so these
+    # variables are not necessary.
     environment.extraInit = ''
       unset GTK_IM_MODULE QT_IM_MODULE XMODIFIERS
     '';
