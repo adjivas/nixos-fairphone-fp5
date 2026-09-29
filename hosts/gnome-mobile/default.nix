@@ -28,6 +28,8 @@
   # Disable documentation (hides desktop icon).
   documentation.nixos.enable = false;
 
+  time.timeZone = "Europe/Paris";
+
   # Core GNOME apps are set by the `gnome-mobile` module. The additional packages
   # listed here can be seen as an example of other useful apps for mobile use.
   environment.systemPackages = with pkgs; [
