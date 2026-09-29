@@ -49,8 +49,9 @@
 
     # Others
     neovim
-    gnome-maps
     git
+    gnome-maps
+    telegram-desktop
 
     (pkgs.writeShellScriptBin "switch" ''
       set -euo pipefail
