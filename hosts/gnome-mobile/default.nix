@@ -127,5 +127,19 @@
     };
   };
 
+  programs.dconf = {
+    enable = true;
+
+    profiles.user.databases = [
+      {
+        settings = {
+          "org/freedesktop/ibus/engine/typing-booster" = {
+            dictionary = "en_US,fr_FR";
+          };
+        };
+      }
+    ];
+  };
+
   system.stateVersion = "25.05";
 }
